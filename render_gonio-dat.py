@@ -59,12 +59,12 @@ if not argv:
    sys.exit(1)
 
 if not options.input:
-   print 'Need an input file'
+   print('Need an input file')
    parser.print_help()
    sys.exit(1)
 
 if not options.output:
-   print 'Need an output file'
+   print('Need an output file')
    parser.print_help()
    sys.exit(1)
 
@@ -147,7 +147,7 @@ ln= sum([1 for line in in_file]) #get the amoutn of input lines for progress rep
 in_file.seek(0) #go back to the beginning of the file for the actual run
 
 
-print "Finding extend and smallest error..."
+print("Finding extend and smallest error...")
 j= 0
 mindx= []
 pos_x= []
@@ -161,7 +161,7 @@ while True:
    if not in_line:
       break
 
-   print "\r[%3d%%]" % (j*100.0/ln),
+   print("\r[%3d%%]" % (j*100.0/ln),)
    sys.stdout.flush()
 
    in_line = in_line[:-1] #drop last char '\n' ;-)
@@ -186,7 +186,7 @@ while True:
 min_error=min(mindx)
 min_pos=[min(pos_x), min(pos_y), min(pos_z)] #minimum x,y,z posistion
 max_pos=[max(pos_x), max(pos_y), max(pos_z)]
-print " done."
+print(" done.")
 in_file.seek(0) #go back to the beginning of the file for the actual run
 
 #print [y for y in pos_tap[][2]]
@@ -204,7 +204,7 @@ while True:
    if not in_line:
       break
 
-   print "\r[%3d%%]" % (j*100.0/ln),
+   print("\r[%3d%%]" % (j*100.0/ln),)
    sys.stdout.flush()
 
    in_line = in_line[:-1] #drop last char '\n' ;-)
@@ -216,7 +216,7 @@ while True:
    if ("#fplane" in in_line): #draw the plane
       line= in_line.split() #split at white space
       if line:
-         print "Caught: ", line
+         print("Caught: ", line)
          dl = map(float, line[1:]) #skip '#plane'
          index= dl[0]
          n= [x*options.s for x in dl[1:4]]
@@ -274,7 +274,7 @@ while True:
    if ("#iline" in in_line): #draw the iline
       line= in_line.split() #split at white space
       if line:
-         print "Caught: ", line
+         print("Caught: ", line)
          dl = map(float, line[1:]) #skip '#iline'
          index= dl[0]
 
@@ -341,7 +341,7 @@ while True:
    if ("#eell" in in_line): #create the error-ellipsoid (error in p)
       line= in_line.split() #split at white space
       if line:
-         print "Caught: ", line
+         print("Caught: ", line)
          dl = map(float, line[1:]) #skip '#eell'
          index= dl[0]
          abc= [x*options.s for x in dl[1:4]]
@@ -377,7 +377,7 @@ while True:
    if ("#eEDC" in in_line): #create the EDC (error in v)
       line= in_line.split() #split at white space
       if line:
-         print "Caught: ", line
+         print("Caught: ", line)
          dl = map(float, line[1:]) #skip '#eEDC'
          index= dl[0]
          ab=  [x for x in dl[1:3]] ##do not scale ab as this is fixed to h==1!!!
