@@ -24,7 +24,6 @@ import sys,os,getopt
 import optparse  # to parse options for us and print a nice help message
 
 import bpy
-import Blender as B 
 
 
 # get the args passed to blender after "--", all of which are ignored by blender specifically
@@ -74,7 +73,7 @@ in_file = open(options.input, "r")
 
 ####remove all objects fromt the default scene, could be made a start option
 #scn = B.Scene.GetCurrent() #deprecated????
-scn= bpy.data.scenes.active
+scn= bpy.context.scene
 
 # obs = scn.objects
 # #ob = [ob for ob in obs if ob.name == 'Cube'][0] #get FIRST Cube !?!
@@ -87,7 +86,7 @@ scn= bpy.data.scenes.active
 
 
 ##material for the point
-matp = B.Material.New('p_mat')         
+matp = bpy.data.materials.new('p_mat')         
 matp.rgbCol = [options.r, options.g, options.b]
 matp.setAlpha(1.0)
 matp.emit = 0.2
@@ -95,7 +94,7 @@ matp.emit = 0.2
 matp.mode |= B.Material.Modes.ZTRANSP
 
 ##material for the error box
-matb = B.Material.New('p_mat')         
+matb = bpy.data.materials.new('p_mat')         
 matb.rgbCol = [options.r, options.g, options.b]
 matb.setAlpha(0.5)
 matb.emit = 0.2
@@ -103,7 +102,7 @@ matb.emit = 0.2
 matb.mode |= B.Material.Modes.ZTRANSP
 
 ##material for the fitted plane
-matplane = B.Material.New('plane_mat')         
+matplane = bpy.data.materials.new('plane_mat')         
 #matplane.rgbCol = [options.r, options.g, options.b]
 matplane.rgbCol = [0, 0, 1]
 matplane.setAlpha(.5)
@@ -112,7 +111,7 @@ matplane.emit = 0.8
 matplane.mode |= B.Material.Modes.ZTRANSP
 
 ##material for the fitted iline
-mati= B.Material.New('iline_mat')
+mati= bpy.data.materials.new('iline_mat')
 mati.rgbCol = [0, 0, 0]
 mati.setAlpha(1)
 mati.emit = 0.6
@@ -121,7 +120,7 @@ mati.spec = 0
 mati.mode |= B.Material.Modes.ZTRANSP
 
 ##material for the error ellipsoid
-mateell = B.Material.New('eell_mat')         
+mateell = bpy.data.materials.new('eell_mat')         
 #matplane.rgbCol = [options.r, options.g, options.b]
 mateell.rgbCol = [1, 0, 0]
 mateell.setAlpha(.5)
@@ -130,7 +129,7 @@ mateell.emit = 0.8
 mateell.mode |= B.Material.Modes.ZTRANSP
 
 ##material for the error EDC
-mateEDC = B.Material.New('eell_mat')         
+mateEDC = bpy.data.materials.new('eell_mat')         
 #matplane.rgbCol = [options.r, options.g, options.b]
 mateEDC.rgbCol = [1, 1, 0]
 mateEDC.setAlpha(1)
